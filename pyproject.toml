@@ -10,6 +10,7 @@ python = ">= 3.11"
 yfinance = "^0.2.37"
 matplotlib = "^3.8.3"
 pandas = "^2.2.1"
+discord-py = "^2.3.2"
 
 [tool.poetry.dev-dependencies]
 black = "24.2.0"
