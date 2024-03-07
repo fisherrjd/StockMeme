@@ -12,8 +12,6 @@ class Deck:
         suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
         ranks = ["Ace", "King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
 
-        # Create the Deck some how??? Brudder idk what the fuck im doing
-
         self.cards = []
 
         for suit in suits:
@@ -32,11 +30,3 @@ class Deck:
         import random
 
         random.shuffle(self.cards)
-
-
-deck = Deck()
-deck.shuffle()
-hand = deck.deal(7)
-print("Dealt cards:")
-for card in hand:
-    print(card)
