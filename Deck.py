@@ -17,6 +17,7 @@ class Deck:
         for suit in suits:
             for rank in ranks:
                 self.cards.append(Card(rank, suit))
+        self.shuffle()
 
     def deal(self, num_cards):
         if num_cards > len(self.cards):

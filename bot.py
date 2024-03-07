@@ -1,6 +1,7 @@
 import discord
 import yfinance as yf
 from discord.ext import commands
+import Deck
 
 # Define intents
 intents = discord.Intents.all()  # Set all intents to True
@@ -25,8 +26,19 @@ async def hello(ctx):
 # Command: !poop
 @bot.command(name="poop", help="Poop In Dr's mouth")
 async def hello(ctx):
-    await ctx.send(f"I want to poop in Dr's mouth   !")
+    await ctx.send(f"I want to poop in Dr's mouth!")
+
+
+# Command: !card
+@bot.command(name="card", help="Draw a card")
+async def hello(ctx):
+
+    deck = Deck.Deck()
+    hand = deck.deal(1)
+    print("Dealt cards:")
+    for card in hand:
+        print(card)
+        await ctx.send(f"{card}")
 
 
 # Run the bot with the token
-bot.run("MTIxNTAyMTkyMTUzNjcwNDUzMg.G1M7Gy.KxSwWB8oZjOHhNVDisuwYo9588AQz8lkW4LHrc")
