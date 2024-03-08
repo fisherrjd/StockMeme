@@ -2,6 +2,7 @@ import discord
 import yfinance as yf
 from discord.ext import commands
 import Deck
+import MultiDeck
 
 # Define intents
 intents = discord.Intents.all()  # Set all intents to True
@@ -33,12 +34,9 @@ async def hello(ctx):
 @bot.command(name="card", help="Draw a card")
 async def hello(ctx):
 
-    deck = Deck.Deck()
-    hand = deck.deal(1)
-    print("Dealt cards:")
-    for card in hand:
-        print(card)
-        await ctx.send(f"{card}")
+    multi = MultiDeck(4)
+    multi.cards_left
 
 
 # Run the bot with the token
+bot.run("MTIxNTAyMTkyMTUzNjcwNDUzMg.GGEEzW.Cy4_EGUfp_4pbVqp1TmS58mNLIvxqbApPZOk18")
