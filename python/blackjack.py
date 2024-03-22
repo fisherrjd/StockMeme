@@ -13,22 +13,20 @@ deck = gamble.BlackJackDeck()
 
 print(deck.cards_left)
 
-# Player Sum of starting Hand
-player_card_1 = deck.draw()
-player_card_2 = deck.draw()
-player_sum = check_face(player_card_1) + check_face(player_card_2)
+# Player Hand
+player_hand = [deck.draw(), deck.draw()]
+player_sum = sum(check_face(card) for card in player_hand)
+print(player_hand[0].value.value == player_hand[1].value.value)
 
-# Dealer Sum of starting Hand
-dealer_card_1 = deck.draw()
-dealer_card_2 = deck.draw()
-dealer_sum = check_face(dealer_card_1) + check_face(dealer_card_2)
+# Dealer Hand
+dealer_hand = [deck.draw(), deck.draw()]
+dealer_sum = sum(check_face(card) for card in dealer_hand)
 
 print()
-print(f"Players Hand: {player_card_1} & {player_card_2}")
-
-print(f"Players Sum: {player_sum}")
+print(f"Player's Hand: {[str(card) for card in player_hand]}")
+print(f"Player's Sum: {player_sum}")
 print()
-print(f"Dealers Hand: {dealer_card_1}")
+print(f"Dealer's Hand: {[str(card) for card in dealer_hand[:1]]}")
 
 while True:
     user = input("Hit, Stand, Double?\n\n").lower()
@@ -36,16 +34,21 @@ while True:
     match user:
         case "hit":
             print("You are hitting")
-            player_sum += check_face(deck.draw())
-            print(f"Player Total: {player_sum}")
+            player_hand.append(deck.draw())
+            player_sum = sum(check_face(card) for card in player_hand)
+            print(f"Player's Hand: {[str(card) for card in player_hand]}")
+            print(f"Player's Sum: {player_sum}")
         case "stand":
-            print(f"Player Total: {player_sum}")
+            print(f"Player's Hand: {[str(card) for card in player_hand]}")
+            print(f"Player's Sum: {player_sum}")
             break
         case "double":
             print("You are doubling")
-            player_sum += check_face(deck.draw())
+            player_hand.append(deck.draw())
+            player_sum = sum(check_face(card) for card in player_hand)
             # Adjust the logic for doubling down as needed
-            print(f"Player Total: {player_sum}")
+            print(f"Player's Hand: {[str(card) for card in player_hand]}")
+            print(f"Player's Sum: {player_sum}")
             break
         case _:
             print("Invalid input. Please enter 'Hit', 'Stand', or 'Double'.")
@@ -55,17 +58,29 @@ while True:
         break
 
 
-print(f"Player Total: {player_sum}")
+print("End of Player's Turn")
+
+# Dealer's Turn
+while dealer_sum < 17:
+    dealer_hand.append(deck.draw())
+    dealer_sum = sum(check_face(card) for card in dealer_hand)
+
+print()
+print(f"Dealer's Hand: {[str(card) for card in dealer_hand]}")
+print(f"Dealer's Sum: {dealer_sum}")
+
+if dealer_sum or player_sum > 21:
+    print("Dealer Bust.")
+elif player_sum > dealer_sum:
+    print("Player wins!")
+elif player_sum == dealer_sum:
+    print("Push")
+else:
+    print("Dealer wins")
 
 print("End of Game")
 
 
-# Deal Cards
-# Define what a "hand" is (2 cards dealt from the same deck)
-# Do we inclue the cut off point to reshuffle? (How will we do that)
-# How many decks do we want to use? Probably 8+ for ease
-
-
-# Player Action
-
-# Dealer Action
+# TODO:
+# Include splits
+# Other
