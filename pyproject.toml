@@ -10,17 +10,33 @@ python = ">= 3.11"
 yfinance = "^0.2.37"
 matplotlib = "^3.8.3"
 pandas = "^2.2.1"
+discord-py = "^2.3.2"
+gamble = "^0.13"
 
 [tool.poetry.dev-dependencies]
 black = "24.2.0"
 ptpython = ">= 3.0.26"
 
+[tool.poetry.group.dev.dependencies]
+ptpython = "^3.0.26"
+
 [tool.black]
-line-length = 100
-target-version = ["py312"]
+line-length = 150
+target-version = ["py311"]
 
 [tool.ruff]
 line-length = 100
 select = ["ALL"]
-ignore = ["COM812", "D200", "D212", "D400", "D403", "D415", "ERA001", "I001", "S104", "T201"]
-target-version = "py312"
+ignore = [
+    "COM812",
+    "D200",
+    "D212",
+    "D400",
+    "D403",
+    "D415",
+    "ERA001",
+    "I001",
+    "S104",
+    "T201",
+]
+target-version = "py311"
